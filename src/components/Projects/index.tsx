@@ -297,6 +297,15 @@ export default function Projects() {
           ))}
         </div>
 
+        <div className="mt-16">
+          <Link
+            href="/projects"
+            className="inline-flex min-h-12 min-w-[170px] items-center justify-center rounded-full bg-[#fff7da] px-8 text-lg font-semibold text-[#0d100d] transition-transform duration-300 hover:scale-[1.03]"
+          >
+            View all projects →
+          </Link>
+        </div>
+
       </div>
     </section>
   );

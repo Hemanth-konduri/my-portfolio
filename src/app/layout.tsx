@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Hemanth Konduri — Fullstack Developer",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Cursor />
         {children}
+        <Footer />
       </body>
     </html>
   );
