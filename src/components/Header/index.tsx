@@ -15,7 +15,7 @@ const Header = forwardRef<HTMLElement>(function Header(_, ref) {
   return (
     <header
       ref={ref}
-      className="relative z-20 border-b border-[#f7f0d2]/10 bg-[linear-gradient(180deg,rgba(19,21,18,0.96),rgba(15,17,14,0.84))]"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-[#f7f0d2]/10 bg-[linear-gradient(180deg,rgba(19,21,18,0.96),rgba(15,17,14,0.84))] backdrop-blur-md"
     >
       <div className="mx-auto flex min-h-[92px] w-full max-w-[1680px] items-center gap-6 px-5 md:px-8 lg:px-12">
         <Link
