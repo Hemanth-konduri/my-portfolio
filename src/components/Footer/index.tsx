@@ -14,7 +14,7 @@ const navLinks = [
 const socialLinks = [
   { label: "GitHub",   href: "https://github.com/hemanth-konduri" },
   { label: "LinkedIn", href: "https://linkedin.com/in/hemanth-konduri" },
-  { label: "Instagram",  href: "https://instagram.com/hemanth_konduri" },
+  { label: "Instagram",  href: "https://instagram.com/konduri_hemanth" },
 ];
 
 // Indices of chars in "Hemanth Konduri" (0-based, space = index 7) that float
