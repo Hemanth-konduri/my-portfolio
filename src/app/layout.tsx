@@ -3,6 +3,7 @@ import "./globals.css";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Hemanth Konduri — Fullstack Developer",
@@ -16,11 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#0a0d0a] text-[#fff7da] antialiased overflow-x-hidden">
+      <body
+        className="bg-[#0a0d0a] text-[#fff7da] antialiased overflow-x-hidden"
+        style={{ fontFamily: "Syne, sans-serif" }}
+      >
         <SmoothScroll />
         <Cursor />
-        {children}
-        <Footer />
+        <Header />
+        <div className="pt-[92px]">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

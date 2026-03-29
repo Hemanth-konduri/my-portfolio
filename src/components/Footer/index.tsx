@@ -12,9 +12,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { label: "GitHub",   href: "https://github.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Twitter",  href: "https://twitter.com" },
+  { label: "GitHub",   href: "https://github.com/hemanth-konduri" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/hemanth-konduri" },
+  { label: "Instagram",  href: "https://instagram.com/hemanth_konduri" },
 ];
 
 // Indices of chars in "Hemanth Konduri" (0-based, space = index 7) that float
@@ -171,7 +171,7 @@ export default function Footer() {
               href="mailto:hemanth@example.com"
               className="w-fit text-[1.05rem] font-medium tracking-[-0.02em] text-[#0a0d0a]/65 transition-colors duration-200 hover:text-[#0a0d0a]"
             >
-              hemanth@example.com
+              kondurihemanth62@gmail.com
             </a>
             <Link
               href="/contact"

@@ -111,7 +111,7 @@ function CertCard({ cert }: { cert: Certificate }) {
               rel="noopener noreferrer"
               className="inline-flex h-10 items-center justify-center rounded-full border border-[#fff7da]/14 bg-[#fff7da]/5 px-5 text-[0.84rem] font-medium text-[#fff7da]/70 transition-all duration-300 hover:border-[#fff7da]/28 hover:bg-[#fff7da]/10 hover:text-[#fff7da]"
             >
-              View Certificate -
+              View Certificate
             </Link>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function Certificates() {
           href="/about"
           className="inline-flex min-h-12 min-w-[220px] items-center justify-center rounded-full bg-[#fff7da] px-8 text-lg font-semibold text-[#0d100d] transition-transform duration-300 hover:scale-[1.03]"
         >
-          Know More About Me -
+          Know More About Me
         </Link>
       </div>
     </section>
