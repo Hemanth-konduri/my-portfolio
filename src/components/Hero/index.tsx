@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, SplitText } from "@/lib/gsap";
-import { useLenis } from "@/hooks/useLenis";
 import Header from "@/components/Header";
 
 const socialItems = [
@@ -12,8 +11,6 @@ const socialItems = [
 ];
 
 export default function Hero() {
-  useLenis();
-
   const heroRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const hemanthRef = useRef<HTMLHeadingElement>(null);
@@ -23,9 +20,12 @@ export default function Hero() {
   const socialsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let hemanthSplit: InstanceType<typeof SplitText> | null = null;
+    let konduriSplit: InstanceType<typeof SplitText> | null = null;
+
     const ctx = gsap.context(() => {
-      const hemanthSplit = new SplitText(hemanthRef.current, { type: "chars" });
-      const konduriSplit = new SplitText(konduriRef.current, { type: "chars" });
+      hemanthSplit = new SplitText(hemanthRef.current, { type: "chars" });
+      konduriSplit = new SplitText(konduriRef.current, { type: "chars" });
 
       gsap.set([...hemanthSplit.chars, ...konduriSplit.chars], {
         transformOrigin: "50% 100%",
@@ -74,7 +74,11 @@ export default function Hero() {
         );
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => {
+      hemanthSplit?.revert();
+      konduriSplit?.revert();
+      ctx.revert();
+    };
   }, []);
 
   return (
