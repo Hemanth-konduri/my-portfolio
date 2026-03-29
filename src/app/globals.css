@@ -75,6 +75,19 @@ body {
   animation-play-state: paused;
 }
 
+.cert-row:hover .animate-marquee,
+.cert-row:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* .about-keyword {
   color: #fff7da;
   position: relative;
