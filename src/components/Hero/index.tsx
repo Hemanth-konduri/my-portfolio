@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, SplitText } from "@/lib/gsap";
-import Header from "@/components/Header";
 
 const socialItems = [
   { label: "GitHub", href: "https://github.com" },
@@ -12,7 +11,6 @@ const socialItems = [
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
   const hemanthRef = useRef<HTMLHeadingElement>(null);
   const konduriRef = useRef<HTMLHeadingElement>(null);
   const introLabelRef = useRef<HTMLParagraphElement>(null);
@@ -33,13 +31,7 @@ export default function Hero() {
 
       const tl = gsap.timeline({ delay: 0.12 });
 
-      tl.from(headerRef.current, {
-        y: -28,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-      })
-        .from(
+      tl.from(
           hemanthSplit.chars,
           {
             yPercent: 105,
@@ -82,17 +74,15 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
+   <section
       ref={heroRef}
-      className="relative min-h-screen overflow-hidden bg-[#090b09] text-[#fff7da]"
+      className="relative min-h-[calc(100vh-92px)] overflow-hidden bg-[#090b09] text-[#fff7da]"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_16%,rgba(255,174,76,0.12),transparent_24%),radial-gradient(circle_at_72%_50%,rgba(176,126,255,0.14),transparent_20%),linear-gradient(180deg,#0b0d0a_0%,#090b09_100%)]" />
 
-      <Header ref={headerRef} />
-
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-92px)] w-full max-w-420 flex-col px-5 pb-8 pt-4 md:px-8 md:pb-10 md:pt-5 lg:px-12">
-        <div className="flex flex-1 items-center justify-center">
-          <div className="flex w-full max-w-390 flex-col items-center justify-center">
+        <div className="flex flex-1 items-center justify-center pt-4 md:pt-8">
+          <div className="flex w-full max-w-390 flex-col items-center justify-start">
             <p
               ref={introLabelRef}
               className="mb-4 text-center text-[clamp(1.25rem,2.2vw,2.35rem)] font-medium tracking-[-0.05em] text-[#f6efd0]/82 md:mb-6"

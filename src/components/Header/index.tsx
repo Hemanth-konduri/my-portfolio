@@ -1,21 +1,70 @@
 "use client";
 
-import { forwardRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const menuItems = [
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Skills", href: "/skills" },
-  { label: "Contact", href: "/contact" },
-  { label: "Acheivements", href: "/certificates" }
+  { label: "About",        href: "/about" },
+  { label: "Projects",     href: "/projects" },
+  { label: "Skills",       href: "/skills" },
+  { label: "Achievements", href: "/certificates" },
 ];
 
-const Header = forwardRef<HTMLElement>(function Header(_, ref) {
+export default function Header() {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let lastY = 0;
+    const THRESHOLD = 8; // px — ignore micro-scrolls
+
+    const onScroll = ({ scroll }: { scroll: number }) => {
+      const diff = scroll - lastY;
+
+      if (Math.abs(diff) < THRESHOLD) return;
+
+      if (diff > 0 && scroll > 92) {
+        // Scrolling down — hide
+        gsap.to(headerRef.current, {
+          yPercent: -100,
+          duration: 0.4,
+          ease: "power2.inOut",
+          overwrite: true,
+        });
+      } else {
+        // Scrolling up — show
+        gsap.to(headerRef.current, {
+          yPercent: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: true,
+        });
+      }
+
+      lastY = scroll;
+    };
+
+    // Lenis emits scroll events that ScrollTrigger is already subscribed to.
+    // We tap into the same event via ScrollTrigger's scroll proxy.
+    ScrollTrigger.addEventListener("scrollStart", () => { lastY = ScrollTrigger.positionInViewport(document.body, "top") * -window.innerHeight || window.scrollY; });
+
+    // Use native scroll as fallback + primary listener
+    const handleScroll = () => {
+      const scroll = window.scrollY;
+      onScroll({ scroll });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header
-      ref={ref}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-[#f7f0d2]/10 bg-[linear-gradient(180deg,rgba(19,21,18,0.96),rgba(15,17,14,0.84))] backdrop-blur-md"
+      ref={headerRef}
+      className="left-0 right-0 top-0 z-50 border-b border-[#f7f0d2]/10 bg-[linear-gradient(180deg,rgba(19,21,18,0.96),rgba(15,17,14,0.84))] backdrop-blur-md"
     >
       <div className="mx-auto flex min-h-[92px] w-full max-w-[1680px] items-center gap-6 px-5 md:px-8 lg:px-12">
         <Link
@@ -40,16 +89,14 @@ const Header = forwardRef<HTMLElement>(function Header(_, ref) {
         </div>
 
         <div className="ml-auto">
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="inline-flex min-h-12 min-w-[170px] items-center justify-center rounded-full bg-[#fff7da] px-8 text-lg font-semibold text-[#0d100d] transition-transform duration-300 hover:scale-[1.03]"
           >
             Let&apos;s talk
-          </a>
+          </Link>
         </div>
       </div>
     </header>
   );
-});
-
-export default Header;
+}
